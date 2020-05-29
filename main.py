@@ -70,7 +70,7 @@ for ii, (img1, img2, label) in enumerate(data_or):
     for i in range(m):
         csv_write.writerow([feat[i], int(label[i])])
  
-    print('batch {} complete'.format(ii))
+    print('batch {}/{} complete'.format(ii, len(data_or)))
 
 
 
