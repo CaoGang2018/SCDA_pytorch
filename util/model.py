@@ -38,8 +38,10 @@ class pool_model(nn.Module):
         # print(tmp1.shape)
         # print(tmp2.shape)
 
-        return t.cat((tmp1, tmp2.reshape(b, c)), dim=1).reshape(b, -1)
+        x = t.cat((tmp1, tmp2.reshape(b, c)), dim=1).reshape(b, -1)
+        x = nn.functional.normalize(x, p=2, dim=1)
 
+        return x
 # x = t.ones(2, 512, 7, 7)
 # model = pool_model()
 # print(model(x).shape)
