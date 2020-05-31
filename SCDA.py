@@ -38,13 +38,13 @@ def select_aggregate_and(feat_map, cc2): # relu5_2
         for j in range(q):
             if cc2[i, j]:
                 tm[i, j] = 1
-    return tmp_out
-    cc_and = F.interpolate(t.from_numpy(tm.reshape(1, 1, p, q)), size=cc.shape, mode='nearest').reshape(cc.shape)
+    # return tmp_out
+    cc_and = F.interpolate(t.from_numpy(tm.reshape(1, 1, p, q).numpy()), size=cc.shape, mode='nearest').reshape(cc.shape)
     for i in range(tmp.shape[0]):
         for j in range(tmp.shape[1]):
             if cc[i, j] and cc_and[i, j] == 1:
                 tmp_out[:, i, j] = feat_map[:, i, j]
-    return tmp_out
+    return tmp_out, cc_and
 
 # x = t.randn(3, 4, 4)
 # # print(type(x))
